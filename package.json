@@ -1,4 +1,14 @@
 {
+	"author": { 
+		"name": "Floyd Karanja M.",
+		"email": "floydqaranja@gmail.com",
+		"url": "https://floweeb.github.io/"
+	},
+	"description": "Quick sms that works!",
+	"keywords": [
+		"sms",
+		"africastalking"
+	],
 	"devDependencies": {
 		"typescript": "^5.9.3",
 		"tsdown": "^0.15.9"
