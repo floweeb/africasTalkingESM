@@ -1,0 +1,6 @@
+{
+	"devDependencies": {
+		"typescript": "^5.9.3",
+		"tsdown": "^0.15.9"
+	}
+}
