@@ -1,6 +1,8 @@
 # africasTalkingeESM
 My project on modern 'node.js' aka TS/JS.
 
-# focus
+## focus
  - sms
- [] send message callback
+ - send message callback
+
+## worked on
