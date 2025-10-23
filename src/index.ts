@@ -1,3 +1,12 @@
+//  IMPORTANT
+// this project is based on my personal project so it won't ok,
+// i'm just updating till I get how to this into a library using
+// `psdown` 
+// it's easier to just copy this snippet and use directly
+
+// reason for this is because the current project has no typing
+// so very unsuitable for typescript projects that are script
+
 import axios, { AxiosInstance } from 'axios';
 
 // base interface to build from here
@@ -7,7 +16,7 @@ interface AfricasTalking{
     baseURL: string
     // for sending a single message
     // possiblly givea a tuple response with (ok, err)
-    sms(message: string, phoneNumbers: string): void
+    sms(message: string, phoneNumbers: string): Promise<SMSResponse | null>
 }
 
 // sms response json
@@ -38,20 +47,19 @@ const africasTalking: AfricasTalking = {
     baseURL: username === 'sandbox' ?
         'https://api.sandbox.africastalking.com/version1' :
         'https://api.africastalking.com/version1',
-    async sms(message, phoneNumbers){
+    async sms(message, phoneNumbers): Promise<SMSResponse | null>{
         const payload = {
             username,
             message,
             to: phoneNumbers
         }
         console.log('payload', payload)
-        try{
+        try{            
             const resp = await api.post<SMSResponse>('/messaging', payload);
-            console.log('resp.data: ', resp.data);
-            return
+            return resp.data
         }catch(err){
             console.log('sms error:\n', err);
-            return;
+            return null;
         }
     }
 }
