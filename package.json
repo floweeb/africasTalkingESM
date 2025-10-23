@@ -1,16 +1,13 @@
 {
   "name": "africasTalkingeESM",
   "version": "1.0.0",
-  "description": "barebones africa's talking API",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "africastalking",
-    "sms"
-  ],
-  "author": "floweeb",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.19.0"
 }
