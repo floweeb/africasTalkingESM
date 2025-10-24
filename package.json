@@ -7,7 +7,11 @@
   "scripts": {
     "build": "tsup"
   },
-  "keywords": [],
+  "keywords": [
+    "africasTalking",
+    "SMS",
+    "ESM"
+  ],
   "author": "floydqaranja@gmail.com",
   "license": "ISC",
   "packageManager": "pnpm@10.19.0",
