@@ -13,3 +13,15 @@ export default interface AfricasTalkingBlueprint {
     // response to be revised!
     sms(message: string, phoneNumbers: string): Promise<SMSResponse | null>
 }
+
+// sms response json
+export interface SMSResponse{
+    Message: string,
+    Recipients: {
+        statusCode: number,
+        number: string,
+        cost: string,
+        status: string,
+        messageId: string,
+    }[]
+}

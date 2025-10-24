@@ -1,6 +1,7 @@
 import type AfricasTalkingBlueprint from './interfaces.js';
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
+import type { SMSResponse } from './interfaces.js';
 
 class AfricasTalkingESM implements AfricasTalkingBlueprint {
     username: string
@@ -9,6 +10,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
     api: AxiosInstance
 
     constructor(username: string, apiKey: string){
+        // credentials for the API
         this.username = username;
         this.apiKey = apiKey;
         this.baseURL = username === 'sandbox' ?
@@ -25,7 +27,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         });
     }
     
-    sms(message: string, phoneNumber: string): Promise<SMSResponse | null>{
+    async sms(message: string, phoneNumber: string): Promise<SMSResponse | null>{
         const payload = {
             username: this.username,
             message,
@@ -33,7 +35,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         }
         console.log('payload', payload)
         try{            
-            const resp = await api.post<SMSResponse>('/messaging', payload);
+            const resp = await this.api.post<SMSResponse>('/messaging', payload);
             return resp.data
         }catch(err){
             console.log('sms error:\n', err);
