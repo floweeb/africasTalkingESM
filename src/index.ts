@@ -21,7 +21,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             baseURL: this.baseURL,
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Type": "application/json",
                 apiKey: apiKey
             }
         });
@@ -31,10 +31,10 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         const payload = {
             username: this.username,
             message,
-            to: phoneNumber
+            phoneNumbers: [phoneNumber]
         }
         try{            
-            const resp = await this.api.post<SMSResponse>('/messaging', payload);
+            const resp = await this.api.post<SMSResponse>('/messaging/bulk', payload);
             return resp.data
         }catch(err){
             console.log('sms error:\n', err);
