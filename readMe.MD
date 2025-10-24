@@ -1,4 +1,4 @@
-### Africa's Talking with Typescript
+# Africa's Talking with Typescript
 - Inspired by modern Typescript and ESM using tsup for future back compatibility.
 - This is a bare bones project with little handholding but ask for direction
 
@@ -6,13 +6,13 @@
  NOT YET PUBLISHED, SO ASSUME THE IMPORT'S THAT FOLLOW AND GET BY GIT ***
 
 ## Basic usage
-# Constructor
+### Constructor
 
 ```
   import AfricasTalking from "cloned_repo_area";
   const africasTalking = new AfricasTalking(username, apiKey);
 ```
-# Send SMS
+### Send SMS
 ```
   // try/catch the error, mostly the user's error, but report if it's me
   try{
@@ -28,7 +28,7 @@
 ```
 
 ## Common pitfalls to be considered
-# senderId
+### senderId
 - `senderId` is required in production so if none is provided it will result to such an
   error:
   ```
@@ -50,8 +50,8 @@
   `throw new Error("Production apps require a 'senderId'");`
   ps. you can add any string to `senderId` it doesn't matter in development it's dropped
   either way.
-  
-# Bulk sms in sandbox
+
+### Bulk sms in sandbox
   - this feature is still not implemented so I error out in sandbox mode with:
     `"This method smsBulk() isn't supported in sandbox mode yet!"`
 
