@@ -15,12 +15,12 @@ export default interface AfricasTalkingBlueprint {
     // ==================
     // 1. for SMSing
     // -------------
+    // responses to be revised!
 
-    // response to be revised!
     // for sending a single message
-    sms(message: string, phoneNumbers: string): Promise<SMSResponse | null>
+    sms(message: string, phoneNumbers: string): Promise<SMSResponse>
     // for sending bulk messages doesn't work in sandbox
-    smsBulk(message: string, phoneNumbers: string[]): Promise<SMSResponse | null>
+    smsBulk(message: string, phoneNumbers: string[]): Promise<SMSResponse>
 }
 
 // sms response json
