@@ -33,7 +33,6 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             message,
             to: phoneNumber
         }
-        console.log('payload', payload)
         try{            
             const resp = await this.api.post<SMSResponse>('/messaging', payload);
             return resp.data
