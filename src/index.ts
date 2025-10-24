@@ -29,28 +29,23 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         });
     }
     
-    async sms(message: string, phoneNumber: string): Promise<SMSResponse | null>{
+    async sms(message: string, phoneNumber: string): Promise<SMSResponse>{
         const payload = {
             username: this.username,
             message,
             to: phoneNumber
         }
         
-        try{            
-            const resp = await this.api.post<SMSResponse>('/messaging', 
-                payload,
-                {
-                    headers: { "Content-Type": "application/x-www-form-urlencoded"}
-                }
-            );
-            return resp.data
-        }catch(err){
-            console.log('sms error:\n', err);
-            return null;
-        }
+        const resp = await this.api.post<SMSResponse>('/messaging',
+            payload,
+            {
+                headers: { "Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
+        return resp.data
     }
 
-    async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse | null>{
+    async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse>{
         if(this.username === 'sandbox'){
             throw new Error('Bulk isn\'t supported in sandbox mode yet!')
         }
@@ -59,13 +54,8 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             message,
             phoneNumbers: phoneNumber
         }
-        try{            
-            const resp = await this.api.post<SMSResponse>('/messaging/bulk', payload);
-            return resp.data
-        }catch(err){
-            console.log('sms error:\n', err);
-            return null;
-        }
+        const resp = await this.api.post<SMSResponse>('/messaging/bulk', payload);
+        return resp.data
     }
 }
 
