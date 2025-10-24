@@ -50,4 +50,8 @@
   `throw new Error("Production apps require a 'senderId'");`
   ps. you can add any string to `senderId` it doesn't matter in development it's dropped
   either way.
+  
+# Bulk sms in sandbox
+  - this feature is still not implemented so I error out in sandbox mode with:
+    `"This method smsBulk() isn't supported in sandbox mode yet!"`
 
