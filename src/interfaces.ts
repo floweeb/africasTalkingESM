@@ -5,7 +5,7 @@ export default interface AfricasTalkingBlueprint {
     username: string
     apiKey: string
     baseURL: string
-    
+
     // A base payload for requests
     payload: {
         username: string
@@ -19,7 +19,7 @@ export default interface AfricasTalkingBlueprint {
     // response to be revised!
     // for sending a single message
     sms(message: string, phoneNumbers: string): Promise<SMSResponse | null>
-    // for sending bulk messages
+    // for sending bulk messages doesn't work in sandbox
     smsBulk(message: string, phoneNumbers: string[]): Promise<SMSResponse | null>
 }
 
