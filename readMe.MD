@@ -1,6 +1,7 @@
 # Africa's Talking with Typescript
 - Inspired by modern Typescript and ESM using tsup for future back compatibility.
-- This is a bare bones project with little handholding but ask for direction
+- This is a bare bones project with little handholding but ask for direction,
+  and definetely go throught the docs, never thought I'd say this 😂
 
 *** STILL IN TESTING 
  NOT YET PUBLISHED, SO ASSUME THE IMPORT'S THAT FOLLOW AND GET BY GIT ***
