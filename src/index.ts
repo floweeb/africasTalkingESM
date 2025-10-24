@@ -1,30 +1,45 @@
-// blueprint for the class main features and quick reference
-interface AfricasTalkingBlueprint {
-    // Credentials to use the API
+import type AfricasTalkingBlueprint from './interfaces.js';
+import axios from 'axios';
+import type { AxiosInstance } from 'axios';
+
+class AfricasTalkingESM implements AfricasTalkingBlueprint {
     username: string
     apiKey: string
     baseURL: string
-    // Methods to be used:
-    // 1. for SMSing
+    api: AxiosInstance
 
-    // for sending a single message*
-    // possiblly givea a tuple response with (ok, err)
-    // sms(message: string, phoneNumbers: string): Promise<SMSResponse | null>
-}
-
-export default class AfricasTalkingESM implements AfricasTalkingBlueprint {
-    username: string
-    apiKey: string
-    baseURL: string
     constructor(username: string, apiKey: string){
         this.username = username;
         this.apiKey = apiKey;
         this.baseURL = username === 'sandbox' ?
             'https://api.sandbox.africastalking.com/version1' :
             'https://api.africastalking.com/version1'
+        // base axios instance
+        this.api = axios.create({
+            baseURL: this.baseURL,
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/x-www-form-urlencoded",
+                apiKey: apiKey
+            }
+        });
     }
     
-    display(){
-        return 'hello world'
+    sms(message: string, phoneNumber: string): Promise<SMSResponse | null>{
+        const payload = {
+            username: this.username,
+            message,
+            to: phoneNumber
+        }
+        console.log('payload', payload)
+        try{            
+            const resp = await api.post<SMSResponse>('/messaging', payload);
+            return resp.data
+        }catch(err){
+            console.log('sms error:\n', err);
+            return null;
+        }
     }
 }
+
+export default AfricasTalkingESM
