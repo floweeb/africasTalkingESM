@@ -1,5 +1,6 @@
 // blueprint for the class main features and quick reference
 export default interface AfricasTalkingBlueprint {
+    productionApp: boolean      // check if in production setting
     // Credentials to use the API
     username: string
     apiKey: string
