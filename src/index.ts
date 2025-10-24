@@ -21,8 +21,10 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             baseURL: this.baseURL,
             headers: {
                 Accept: "application/json",
+                apiKey: apiKey,
+                // content types are weird in Africa's talking so may vary endpoint to endpoint
+                // this is just the default, may cause issues
                 "Content-Type": "application/json",
-                apiKey: apiKey
             }
         });
     }
@@ -31,7 +33,31 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         const payload = {
             username: this.username,
             message,
-            phoneNumbers: [phoneNumber]
+            to: phoneNumber
+        }
+        
+        try{            
+            const resp = await this.api.post<SMSResponse>('/messaging', 
+                payload,
+                {
+                    headers: { "Content-Type": "application/x-www-form-urlencoded"}
+                }
+            );
+            return resp.data
+        }catch(err){
+            console.log('sms error:\n', err);
+            return null;
+        }
+    }
+
+    async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse | null>{
+        if(this.username === 'sandbox'){
+            throw new Error('Bulk isn\'t supported in sandbox mode yet!')
+        }
+        const payload = {
+            username: this.username,
+            message,
+            phoneNumbers: phoneNumber
         }
         try{            
             const resp = await this.api.post<SMSResponse>('/messaging/bulk', payload);

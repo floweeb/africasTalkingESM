@@ -9,9 +9,11 @@ export default interface AfricasTalkingBlueprint {
     // 1. for SMSing
     // -------------
 
-    // for sending a single message*
     // response to be revised!
+    // for sending a single message
     sms(message: string, phoneNumbers: string): Promise<SMSResponse | null>
+    // for sending bulk messages
+    smsBulk(message: string, phoneNumbers: string[]): Promise<SMSResponse | null>
 }
 
 // sms response json
