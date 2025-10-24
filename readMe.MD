@@ -19,7 +19,17 @@
   try{
     const resp = await africasTalking.sms('hello world', '+254712345678');
     // console logging won't show deeper info! the full report should be somthing like:
-
+    //  "Message": "Sent to 1/1 Total Cost: KES 0.8000 Message parts: 1",
+    //  "Recipients": [
+    //    {
+    //      "cost": "KES 0.8000",
+    //      "messageId": "ATXid_7cdb92fefb04afb863393d7842bddfa5",
+    //      "number": "+254716925052",
+    //      "status": "Success",
+    //      "statusCode": 101
+    //    }
+    //  ]
+      
     console.log('resp', resp);
   }catch(error){
     console.log('err', err);
