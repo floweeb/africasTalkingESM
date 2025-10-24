@@ -1,13 +1,13 @@
 {
-  "name": "africasTalkingeESM",
+  "name": "africasTalkingESM",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "floydqaranja@gmail.com",
   "license": "ISC",
   "packageManager": "pnpm@10.19.0",
   "devDependencies": {
