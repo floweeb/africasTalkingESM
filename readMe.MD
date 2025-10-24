@@ -1,10 +1,25 @@
 # Africa's Talking with Typescript
-- Inspired by modern Typescript and ESM using tsup for future back compatibility.
-- This is a bare bones project with little handholding but ask for direction,
-  and definetely go throught the docs, never thought I'd say this 😂
+- Inspired by ease of use, Typescript with ESM using tsup for future back compatibility.
+- Also anyone can tinker with the project with ease.
 
-*** STILL IN TESTING 
- NOT YET PUBLISHED, SO ASSUME THE IMPORT'S THAT FOLLOW AND GET BY GIT ***
+- Not much validation I leave that to you and handholding(on the technical side) but ask for
+  directions, and definetely go throught the docs, never thought I'd say this 😂
+
+*** STILL IN TESTING ***
+
+*** NOT YET PUBLISHED, SO ASSUME THE IMPORT'S THAT FOLLOW AND GET BY GIT ***
+
+## Features
+### Currently implemented.
+  1. Single SMS - `sms(message: string, phoneNumber: string)`
+  2. Bulk SMS - `smsBulk(message: string, phoneNumber: string[])`
+
+### Currently working on.
+  1. SMS callback - WIP
+
+### Thinking of implementing(original goal was SMSing, may expand if needed)
+  1. ...
+
 
 ## Basic usage
 ### Constructor
@@ -13,7 +28,7 @@
   import AfricasTalking from "cloned_repo_area";
   const africasTalking = new AfricasTalking(username, apiKey);
 ```
-### Send SMS
+### Send SMS - single
 ```
   // try/catch the error, mostly the user's error, but report if it's me
   try{
