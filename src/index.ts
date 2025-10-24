@@ -4,18 +4,20 @@ import type { AxiosInstance } from 'axios';
 import type { SMSResponse } from './interfaces.js';
 
 class AfricasTalkingESM implements AfricasTalkingBlueprint {
+    productionApp: boolean
     username: string
     apiKey: string
     baseURL: string
     api: AxiosInstance
 
     constructor(username: string, apiKey: string){
+        this.productionApp = username !== 'sandbox'
         // credentials for the API
         this.username = username;
         this.apiKey = apiKey;
-        this.baseURL = username === 'sandbox' ?
-            'https://api.sandbox.africastalking.com/version1' :
-            'https://api.africastalking.com/version1'
+        this.baseURL = this.productionApp ?            
+            'https://api.africastalking.com/version1' :
+            'https://api.sandbox.africastalking.com/version1'
         // base axios instance
         this.api = axios.create({
             baseURL: this.baseURL,
@@ -46,7 +48,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
     }
 
     async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse>{
-        if(this.username === 'sandbox'){
+        if(!this.productionApp){
             throw new Error('This method smsBulk() isn\'t supported in sandbox mode yet!')
         }
         const payload = {
