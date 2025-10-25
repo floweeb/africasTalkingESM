@@ -22,11 +22,17 @@
 
 
 ## Basic usage
-### Constructor
-
+### Installation
 ```
-  import AfricasTalking from "cloned_repo_area";
-  const africasTalking = new AfricasTalking(username, apiKey);
+  npm i africastalkingesm
+  // or
+  pnpm add africastalkingesm
+  // not sure if yarn will from the npm site to confirm
+```
+### Constructor
+```
+  import AfricasTalkingESM from "africastalkingesm";
+  const africasTalking = new AfricasTalkingESM(username, apiKey);
 ```
 ### Send SMS - single
 ```
