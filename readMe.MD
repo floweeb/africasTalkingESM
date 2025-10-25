@@ -71,9 +71,9 @@
       ]
     }
   ```
-  so in dev you can ignore `senderId` in class constructor: `constructor(username: string, apiKey: string, senderId? : string)`, but anything but the `username` 'sandbox' is deemed
-  a production ready so the it will fail if not provided with the error:
-  `throw new Error("Production apps require a 'senderId'");`
+  so in dev you can ignore `senderId` in class constructor: `constructor(username: string, apiKey: string, senderId? : string)`, but anything the `username` 'sandbox' is deemed
+  a production ready app, so it will fail with the error:
+  `Production apps require a 'senderId'`
   ps. you can add any string to `senderId` it doesn't matter in development it's dropped
   either way.
 
