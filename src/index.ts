@@ -27,10 +27,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             username,
         }
 
-        if(this.productionApp) {
-            if(!senderId){
-                throw new Error("Production apps require a 'senderId'")
-            }
+        if(this.productionApp && senderId) {
             this.payload = {
                 ...this.payload,
                 senderId
