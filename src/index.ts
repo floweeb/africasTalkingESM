@@ -13,13 +13,21 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
     payload: { username: string; senderId?: string; };
     // base axios instance extending the base blueprint up to you to implement yours
     api: AxiosInstance
-
-    constructor(username: string, apiKey: string, senderId? : string){
+    /**
+     * Creates an object for using the africastalking api.
+     * use username 'sandbox' if you want a developmental object otherwise it's
+     * a production object where the 'senderId' is required.
+     */
+    constructor(username: string, apiKey: string, senderId?: string) {
         this.productionApp = username !== 'sandbox'
+        // to ensure the senderId is set up before moving on.
+        if (this.productionApp && !senderId) {
+            throw new Error(`the 'AFRICAS_TALKING_SENDERID' env isn't set for production!`);
+        }
         // credentials for the API
         this.username = username;
         this.apiKey = apiKey;
-        this.baseURL = this.productionApp ?            
+        this.baseURL = this.productionApp ?
             'https://api.africastalking.com/version1' :
             'https://api.sandbox.africastalking.com/version1'
 
@@ -27,7 +35,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             username,
         }
 
-        if(this.productionApp && senderId) {
+        if (this.productionApp && senderId) {
             this.payload = {
                 ...this.payload,
                 senderId
@@ -45,25 +53,25 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             }
         });
     }
-    
-    async sms(message: string, phoneNumber: string): Promise<SMSResponse>{
+
+    async sms(message: string, phoneNumber: string): Promise<SMSResponse> {
         const payload = {
             ...this.payload,
             message,
             to: phoneNumber
         }
-        
+
         const resp = await this.api.post<SMSResponse>('/messaging',
             payload,
             {
-                headers: { "Content-Type": "application/x-www-form-urlencoded"}
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
             }
         );
         return resp.data
     }
 
-    async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse>{
-        if(!this.productionApp){
+    async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse> {
+        if (!this.productionApp) {
             throw new Error('This method smsBulk() isn\'t supported in sandbox mode yet!')
         }
         const payload = {
