@@ -26,9 +26,10 @@
   // not sure if yarn will from the npm site to confirm
 ```
 ### Constructor
-  By setting the username to 'sandbox' in the constructor makes it a development object,
+- By setting the username to 'sandbox' in the constructor makes it a development object,
   anything else makes it a production object.
-  
+  p.s if in production mode without a `senderId` it will error out.
+
 ```
   import AfricasTalkingESM from "africastalkingesm";
   const africasTalking = new AfricasTalkingESM(username, apiKey);
