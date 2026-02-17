@@ -1,6 +1,6 @@
 {
   "name": "africastalkingesm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "africasTalking library for typescript compatibility",
   "main": "dist/index.js",
   "type": "module",
