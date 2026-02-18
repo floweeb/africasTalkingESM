@@ -9,10 +9,11 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
     username: string
     apiKey: string
     baseURL: string
+    senderId: string | undefined
 
-    payload: { username: string; senderId?: string; };
     // base axios instance extending the base blueprint up to you to implement yours
     api: AxiosInstance
+
     /**
      * Creates an object for using the africastalking api.
      * use username 'sandbox' if you want a developmental object otherwise it's
@@ -30,17 +31,8 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         this.baseURL = this.productionApp ?
             'https://api.africastalking.com/version1' :
             'https://api.sandbox.africastalking.com/version1'
-
-        this.payload = {
-            username,
-        }
-
-        if (this.productionApp && senderId) {
-            this.payload = {
-                ...this.payload,
-                senderId
-            }
-        }
+        this.senderId = senderId
+        
         // base axios instance
         this.api = axios.create({
             baseURL: this.baseURL,
@@ -54,13 +46,18 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         });
     }
 
-    async sms(message: string, phoneNumber: string): Promise<SMSResponse> {
+    /**
+     * legacy bulk messaging
+     * 
+     */
+    async smsLegacy(message: string, phoneNumber: string[]): Promise<SMSResponse> {
         const payload = {
-            ...this.payload,
+            username: this.username,
             message,
-            to: phoneNumber
+            to: phoneNumber.join(','),
+            from: this.senderId ? this.senderId : ''
         }
-
+        
         const resp = await this.api.post<SMSResponse>('/messaging',
             payload,
             {
@@ -70,14 +67,19 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
         return resp.data
     }
 
-    async smsBulk(message: string, phoneNumber: string[]): Promise<SMSResponse> {
+    /**
+     * Modern bulk messaging, sandbox doesn't work yet.
+     * 
+     */
+    async sms(message: string, phoneNumber: string[]): Promise<SMSResponse> {
         if (!this.productionApp) {
             throw new Error('This method smsBulk() isn\'t supported in sandbox mode yet!')
         }
         const payload = {
-            ...this.payload,
+            username: this.username,
             message,
-            phoneNumbers: phoneNumber
+            phoneNumbers: phoneNumber,
+            senderId: this.senderId ? this.senderId : ''
         }
         const resp = await this.api.post<SMSResponse>('/messaging/bulk', payload);
         return resp.data
