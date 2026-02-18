@@ -5,12 +5,9 @@ export default interface AfricasTalkingBlueprint {
     username: string
     apiKey: string
     baseURL: string
+    // For production use
+    senderId: string | undefined
 
-    // A base payload for requests
-    payload: {
-        username: string
-        senderId?: string
-    }
     // Methods to be used:
     // ==================
     // 1. for SMSing
