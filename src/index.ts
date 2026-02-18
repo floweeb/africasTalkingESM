@@ -73,7 +73,7 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
      */
     async sms(message: string, phoneNumber: string[]): Promise<SMSResponse> {
         if (!this.productionApp) {
-            throw new Error('This method smsBulk() isn\'t supported in sandbox mode yet!')
+            throw new Error('This method sms() isn\'t supported in sandbox mode yet!')
         }
         const payload = {
             username: this.username,
