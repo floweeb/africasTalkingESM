@@ -17,10 +17,10 @@ export default interface AfricasTalkingBlueprint {
     // -------------
     // responses to be revised!
 
-    // for sending a single message
-    sms(message: string, phoneNumbers: string): Promise<SMSResponse>
-    // for sending bulk messages doesn't work in sandbox
-    smsBulk(message: string, phoneNumbers: string[]): Promise<SMSResponse>
+    // legacy bulk messages
+    smsLegacy(message: string, phoneNumbers: string[]): Promise<SMSResponse>
+    // mordern bulk messages, doesn't work with sandbox yet
+    sms(message: string, phoneNumbers: string[]): Promise<SMSResponse>
 }
 
 // sms response json
