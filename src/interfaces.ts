@@ -20,6 +20,11 @@ export default interface AfricasTalkingBlueprint {
     sms(message: string, phoneNumbers: string[]): Promise<SMSResponse>
 }
 
+// raw response from africastalking
+export interface AfricasTalkingResponse{
+    SMSMessageData: SMSResponse
+}
+
 // sms response json
 export interface SMSResponse{
     Message: string,

@@ -1,7 +1,7 @@
 import type AfricasTalkingBlueprint from './interfaces.js';
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-import type { SMSResponse } from './interfaces.js';
+import type { AfricasTalkingResponse, SMSResponse } from './interfaces.js';
 
 class AfricasTalkingESM implements AfricasTalkingBlueprint {
     productionApp: boolean
@@ -58,13 +58,13 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             from: this.senderId ? this.senderId : ''
         }
         
-        const resp = await this.api.post<SMSResponse>('/messaging',
+        const resp = await this.api.post<AfricasTalkingResponse>('/messaging',
             payload,
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
             }
         );
-        return resp.data
+        return resp.data.SMSMessageData
     }
 
     /**
@@ -81,8 +81,8 @@ class AfricasTalkingESM implements AfricasTalkingBlueprint {
             phoneNumbers: phoneNumber,
             senderId: this.senderId ? this.senderId : ''
         }
-        const resp = await this.api.post<SMSResponse>('/messaging/bulk', payload);
-        return resp.data
+        const resp = await this.api.post<AfricasTalkingResponse>('/messaging/bulk', payload);
+        return resp.data.SMSMessageData
     }
 }
 
